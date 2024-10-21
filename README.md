@@ -26,7 +26,7 @@
 ### Installation
 1. Clone this repository:
     ```bash
-    git clone https://github.com/your-username/math-aint-mathing-wiki.git
+    git clone https://github.com/akeantti/math-aint-mathing-wiki.git
     ```
 2. Navigate to the project folder:
     ```bash
