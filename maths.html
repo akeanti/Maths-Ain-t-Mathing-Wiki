@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Math Ain't Mathing Wiki</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background-color: #1a237e;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            background-color: #333;
+            color: white;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 100px;
+            overflow-y: auto;
+            transition: 0.3s;
+        }
+
+        #sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            transition: 0.3s;
+        }
+
+        #sidebar a:hover {
+            background-color: #575757;
+        }
+
+        #sidebar h3 {
+            padding-left: 15px;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        /* Main Content */
+        #content {
+            margin-left: 250px;
+            padding: 50px;
+        }
+
+        .theorem-container {
+            background: white;
+            padding: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .theorem-title {
+            font-size: 32px;
+            color: #1a237e;
+        }
+
+        .theorem-proof {
+            font-size: 20px;
+            line-height: 1.8;
+        }
+
+        .theorem-diagram {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* MathJax and Animation */
+        @keyframes mathPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .math-animate {
+            animation: mathPulse 2s infinite;
+        }
+
+        /* Search Bar */
+        #searchBar {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            display: block;
+        }
+
+        /* Floating Symbols */
+        .floating-symbol {
+            position: absolute;
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: float 8s infinite ease-in-out;
+        }
+
+        /* Collapsible Sidebar Sections */
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+            background-color: #444;
+            color: white;
+            border: none;
+            text-align: left;
+            outline: none;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            font-size: 13px;
+            color: white;
+            float: right;
+        }
+
+        .collapsible.active:after {
+            content: '\2212';
+        }
+
+        .content-collapsible {
+            padding: 0 15px;
+            display: none;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .content-collapsible a {
+            color: #bdbdbd;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 100px;
+            }
+            #content {
+                margin-left: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Math Ain't Mathing Wiki</h1>
+    </header>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <h3>Theorem Categories</h3>
+        <button class="collapsible">Algebra</button>
+        <div class="content-collapsible">
+            <a href="#pythagorean-theorem">Pythagorean Theorem</a>
+            <a href="#fermat-theorem">Fermat's Last Theorem</a>
+        </div>
+        <button class="collapsible">Calculus</button>
+        <div class="content-collapsible">
+            <a href="#fundamental-calculus">Fundamental Theorem of Calculus</a>
+            <a href="#eulers-identity">Euler's Identity</a>
+        </div>
+        <button class="collapsible">Geometry</button>
+        <div class="content-collapsible">
+            <a href="#congruence-theorem">Congruence Theorems</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Search Bar -->
+        <input type="text" id="searchBar" placeholder="Search for a theorem..." onkeyup="searchTheorems()">
+        
+        <div id="pythagorean-theorem" class="theorem-container">
+            <h2 class="theorem-title math-animate">Pythagorean Theorem</h2>
+            <p class="theorem-proof">
+                The Pythagorean theorem states that in a right-angled triangle, the square of the length of the hypotenuse is equal to the sum of the squares of the other two sides. In equation form:
+                $$ a^2 + b^2 = c^2 $$
+            </p>
+            <div class="theorem-diagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Math_Pythagorean.svg/1200px-Math_Pythagorean.svg.png" alt="Pythagorean Diagram" width="300px">
+            </div>
+        </div>
+
+        <div id="fermat-theorem" class="theorem-container">
+            <h2 class="theorem-title math-animate">Fermat's Last Theorem</h2>
+            <p class="theorem-proof">
+                Fermat's Last Theorem states that no three positive integers \(a\), \(b\), and \(c\) can satisfy the equation \(a^n + b^n = c^n\) for any integer value of \(n\) greater than 2.
+            </p>
+            <div class="theorem-diagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Fermat.png" alt="Fermat" width="300px">
+            </div>
+        </div>
+
+        <div id="fundamental-calculus" class="theorem-container">
+            <h2 class="theorem-title math-animate">Fundamental Theorem of Calculus</h2>
+            <p class="theorem-proof">
+                The fundamental theorem of calculus links the concept of the derivative of a function with the concept of the integral. It consists of two parts:
+                $$ \int_a^b f(x)\, dx = F(b) - F(a) $$
+                $$ \frac{d}{dx} \int_a^x f(t)\, dt = f(x) $$
+            </p>
+        </div>
+
+        <div id="eulers-identity" class="theorem-container">
+            <h2 class="theorem-title math-animate">Euler's Identity</h2>
+            <p class="theorem-proof">
+                Euler's identity is often regarded as the most beautiful equation in mathematics because it combines five fundamental mathematical constants:
+                $$ e^{i\pi} + 1 = 0 $$
+                where:
+                - \( e \) is Euler's number, the base of natural logarithms,
+                - \( i \) is the imaginary unit,
+                - \( \pi \) is the mathematical constant pi.
+            </p>
+            <div class="theorem-diagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Euler%27s_identity.svg/1024px-Euler%27s_identity.svg.png" alt="Euler's Identity" width="300px">
+            </div>
+        </div>
+
+        <div id="congruence-theorem" class="theorem-container">
+            <h2 class="theorem-title math-animate">Congruence Theorems in Geometry</h2>
+            <p class="theorem-proof">
+                Congruence theorems describe the conditions under which two triangles are congruent. The common theorems include:
+                <ul>
+                    <li><strong>SSS (Side-Side-Side):</strong> If three sides of one triangle are equal to three sides of another triangle, then the triangles are congruent.</li>
+                    <li><strong>SAS (Side-Angle-Side):</strong> If two sides and the angle between them in one triangle are equal to two sides and the angle between them in another triangle, the triangles are congruent.</li>
+                    <li><strong>ASA (Angle-Side-Angle):</strong> If two angles and the side between them in one triangle are equal to two angles and the side between them in another triangle, the triangles are congruent.</li>
+                </ul>
+            </p>
+            <div class="theorem-diagram">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/SSS_congruence_theorem.svg/1024px-SSS_congruence_theorem.svg.png" alt="Congruence Theorem" width="300px">
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Math Symbols -->
+    <div class="floating-symbol" style="top: 10%; left: 70%;">∑</div>
+    <div class="floating-symbol" style="top: 80%; left: 30%;">π</div>
+    <div class="floating-symbol" style="top: 50%; left: 20%;">√</div>
+    <div class="floating-symbol" style="top: 60%; left: 80%;">∞</div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Math Ain't Mathing Wiki. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Collapsible sections for theorems
+        const coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+
+        // Search function for theorems
+        function searchTheorems() {
+            const input = document.getElementById('searchBar').value.toLowerCase();
+            const theorems = document.getElementsByClassName('theorem-container');
+            for (let i = 0; i < theorems.length; i++) {
+                const title = theorems[i].getElementsByClassName('theorem-title')[0].innerText.toLowerCase();
+                if (title.includes(input)) {
+                    theorems[i].style.display = "block";
+                } else {
+                    theorems[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
