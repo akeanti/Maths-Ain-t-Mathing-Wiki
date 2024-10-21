@@ -56,8 +56,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any inquiries or suggestions, please reach out to:
-- **Email**: your-email@example.com
-- **GitHub**: [your-username](https://github.com/your-username)
+- **Email**: support@akeanti.com
+- **GitHub**: [your-username](https://github.com/akeanti)
 
 ---
 
